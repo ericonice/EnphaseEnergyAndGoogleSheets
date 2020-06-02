@@ -4,12 +4,15 @@ function EnphaseEnergyAPIHelper() {
 EnphaseEnergyAPIHelper.prototype = {
     updateSpreadsheet: function () {
         let sheet = SpreadsheetApp.openById(EnphaseEnergySpreadsheetId).getActiveSheet();
+      
+        let previousNumberOfDays = sheet.getLastRow() - 1;
         let rows = this.getLifeTimeEnergy();
         sheet.getRange(1, 1, rows.length, rows[0].length).setValues(rows);    
       
         return {
           status: 'Success',
-          numberOfDays: rows.length - 1
+          previousNumberOfDays: previousNumberOfDays,
+          currentNumberOfDays: rows.length - 1
         };
     },
 

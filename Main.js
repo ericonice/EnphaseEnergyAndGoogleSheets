@@ -7,7 +7,7 @@ function doGet(request) {
 }
 
 function update() {
-    let helper = new EnphaseEnergyAPIHelper();
-    helper.updateSpreadsheet();
-    console.log(`Success`);
+  let helper = new EnphaseEnergyAPIHelper();
+  var results = helper.updateSpreadsheet();
+  console.log(`Successfully updated solar output: ${JSON.stringify(results, null, 2)}`);
 }
